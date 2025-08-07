@@ -96,9 +96,9 @@ export default function Projects() {
           </CardContent>
         </Card>
       ) : (
-        <Grid container spacing={3}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 3 }}>
           {files.map((file) => (
-            <Grid item xs={12} md={6} lg={4} key={file.filename}>
+            <Box key={file.filename}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" component="h2" gutterBottom>
@@ -127,9 +127,9 @@ export default function Projects() {
                   </Button>
                 </CardContent>
               </Card>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
       )}
     </Box>
   );

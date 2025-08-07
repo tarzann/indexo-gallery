@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Server } from 'ws';
+import { WebSocketServer } from 'ws';
 
 // WebSocket server instance
-let wss: Server | null = null;
+let wss: WebSocketServer | null = null;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!wss) {
     // Create WebSocket server
-    wss = new Server({ noServer: true });
+    wss = new WebSocketServer({ noServer: true });
     
     wss.on('connection', (ws) => {
       console.log('WebSocket client connected');
@@ -63,7 +63,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           console.error('WebSocket error:', error);
           ws.send(JSON.stringify({
             type: 'upload-error',
-            message: error.message
+            message: error instanceof Error ? error.message : 'Unknown error'
           }));
         }
       });

@@ -396,5 +396,6 @@ export default function Home() {
         </Box>
       </Modal>
     </Box>
+  </Box>
   );
 }
